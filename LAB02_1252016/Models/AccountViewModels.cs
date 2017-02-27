@@ -3,6 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace LAB02_1252016.Models
 {
+    //
     public class ExternalLoginConfirmationViewModel
     {
         [Required]
