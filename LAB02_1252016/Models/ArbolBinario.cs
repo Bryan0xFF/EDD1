@@ -12,55 +12,37 @@ namespace LAB02_1252016.Models
         public Nodo<T> right;
     }
 
-    public class ArbolBinario<T> where T : IComparable
+
+    public class ArbolBinario<T> where T : IComparable<T>
     {
-        Nodo<T> root;
+        Nodo<T> Root;
 
         public ArbolBinario()
         {
-           root = null;
+           Root = null;
         }
          
-        public Nodo<T> Insert(Nodo<T> node, T value)
+        public Nodo<T> Insert(Nodo<T> root, T value) 
         {
-            
-            if (node == null)
+            Nodo<T> node = new Nodo<T>();
+
+            if (root == null)
             {
-                node = new Nodo<T>();
-                node.data = value;
+                root = node;
             }
 
             else if (value.CompareTo(node.data) < 0)
             {
-                root.left = Insert(node.left, value); 
+               Insert(root.left, value);
             }
             else
             {
-                root.right = Insert(node.right, value);
+                Insert(root.right, value);
             }
 
             return root;
         }   
 
-        public Nodo<T> SearchByComparer(Nodo<T> node, T value)
-        {
-            if (root.data == null || value.CompareTo(root.data) == 0)
-            {
-                return root;
-            }
-
-            //si es menor el valor comparado contra el valor del nodo actual, toma el hijo izquierdo del nodo y entra en la recursion!
-
-            else if (value.CompareTo(node.data) < 0)
-            {
-                return SearchByComparer(node.left, value);
-            }
-
-            else
-            {
-                return SearchByComparer(node.right, value);
-            }
-           
-        }
+        
     }
 }

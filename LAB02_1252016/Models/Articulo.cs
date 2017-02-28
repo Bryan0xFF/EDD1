@@ -5,7 +5,7 @@ using System.Web;
 
 namespace LAB02_1252016.Models
 {
-    public class Articulo
+    public class Articulo : IComparable<Articulo>
     {
         public string idProducto { get; set; }
         public string descripcionProd { get; set; }
@@ -20,6 +20,9 @@ namespace LAB02_1252016.Models
             this.cantEnInventario = Convert.ToInt32(cantEnInventario);
         }
 
-
+        int IComparable<Articulo>.CompareTo(Articulo other)
+        {
+            return this.idProducto.CompareTo(other.idProducto);
+        }
     }
 }
