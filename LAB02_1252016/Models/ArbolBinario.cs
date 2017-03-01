@@ -10,6 +10,11 @@ namespace LAB02_1252016.Models
         public T data;
         public Nodo<T> left;
         public Nodo<T> right;
+
+        public Nodo(T data)
+        {
+            this.data = data;
+        }
     }
 
 
@@ -22,25 +27,25 @@ namespace LAB02_1252016.Models
            Root = null;
         }
          
-        public Nodo<T> Insert(Nodo<T> root, T value) 
+        public Nodo<T> Insert(Nodo<T> node, T value) 
         {
-            Nodo<T> node = new Nodo<T>();
+            Nodo<T> newNode = new Nodo<T>(value);
 
-            if (root == null)
+            if (Root == null)
             {
-                root = node;
+                Root = newNode;
             }
 
-            else if (value.CompareTo(node.data) < 0)
+            else if (value.CompareTo(Root.data) < 0)
             {
-               Insert(root.left, value);
+               Insert(Root.left, value);
             }
             else
             {
-                Insert(root.right, value);
+                Insert(Root.right, value);
             }
 
-            return root;
+            return node;
         }   
 
         
