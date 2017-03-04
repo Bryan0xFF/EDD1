@@ -20,29 +20,30 @@ namespace LAB02_1252016.Models
 
     public class ArbolBinario<T> where T : IComparable<T>
     {
-        Nodo<T> Root;
+        public Nodo<T> Root { get; set; }
 
         public ArbolBinario()
         {
            Root = null;
         }
          
-        public Nodo<T> Insert(Nodo<T> node, T value) 
+        public Nodo<T> Insert(ref Nodo<T> node, T value) 
         {
             Nodo<T> newNode = new Nodo<T>(value);
 
-            if (Root == null)
+            if (node == null)
             {
-                Root = newNode;
+                node = newNode;
+                node.data = newNode.data;
             }
 
-            else if (value.CompareTo(Root.data) < 0)
+            else if (value.CompareTo(node.data)  == -1)
             {
-               Insert(Root.left, value);
+               Insert(ref node.left, value);
             }
             else
             {
-                Insert(Root.right, value);
+                Insert(ref node.right, value);
             }
 
             return node;
